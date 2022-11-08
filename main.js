@@ -11,21 +11,12 @@ import {
     const url = `${BASE_URL}${id}?${API_KEY}&${language}`
     axios.get(url).then(response => {
       const data = response.data
-      filme.innerHTML =
-        <><div>
-          <img class='poster' src="${IMG_URL + data.poster_path}" alt="Poster do Fime"></img>
-          <p class="popularidade"> Nota: ${data.vote_average}</p>
-        </div>
-        <div>
-            <h2 class="titulo-do-filme"></h2>
-            <p class="Descrição-do-filme">${data.overview}</p>
-          </div></>
-    })
+      poster.src = `${IMG_URL}${response.data.poster_path}`
+      tituloFilme.textContent = data.title
+      resumo.textContent = data.overview
+      })
     .catch(error => {
-      filme.innerHTML = 
-      <div id="error-mensage">
-        <h2 class="titulo-do-filme">Hoje não é dia de filme. Keep calm and play blass.</h2>
-      </div>
+      filme.innerHTML = "<div> <strong> OPS, Hoje não é dia de filme é dia de estudar!!!<\strong> <\div>"
     })
   }
   mudarFilme.addEventListener("click", chamarFilme);
